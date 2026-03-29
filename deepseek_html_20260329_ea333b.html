@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Limited Access · 1275 Traffic Exchanges & Mailers</title>
-    <!-- Google Fonts + simple reset & modern styling -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <title>LIMITED ACCESS · 1275 Auto Traffic Machines</title>
+    <!-- preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Inter font (latin, only weights we need) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- inline critical styles: ultra-light, fast, no flicker -->
     <style>
         * {
             margin: 0;
@@ -14,204 +18,222 @@
         }
 
         body {
-            background: linear-gradient(145deg, #0b0f1c 0%, #070b16 100%);
-            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 20% 30%, #0A0F1F, #03060C);
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem 1.5rem;
+            padding: 1.2rem;
             position: relative;
         }
 
-        /* background subtle glow */
+        /* fast backdrop glow – no heavy blurs to keep speed */
         body::before {
             content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.08), transparent 60%);
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 30%, rgba(0, 230, 255, 0.12), transparent 70%);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* main card */
-        .container {
-            max-width: 680px;
+        /* main card - compact but no scroll needed */
+        .card {
+            max-width: 700px;
             width: 100%;
-            background: rgba(12, 18, 30, 0.75);
-            backdrop-filter: blur(12px);
-            border-radius: 3rem;
-            border: 1px solid rgba(0, 255, 255, 0.25);
-            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(0, 255, 255, 0.1) inset;
-            padding: 2.2rem 2rem 2.5rem;
-            transition: all 0.2s ease;
+            background: rgba(8, 12, 24, 0.92);
+            backdrop-filter: blur(6px);
+            border-radius: 2rem;
+            border: 1px solid rgba(0, 230, 255, 0.35);
+            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(0, 230, 255, 0.15) inset;
+            padding: 1.6rem 1.8rem 2rem;
+            transition: 0.2s;
             position: relative;
             z-index: 2;
         }
 
-        /* urgent badge */
-        .urgent-badge {
-            display: inline-block;
-            background: #ff3366;
-            color: white;
-            font-weight: 700;
-            font-size: 0.75rem;
-            letter-spacing: 1.5px;
+        /* urgency pill */
+        .urgency-pulse {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 51, 102, 0.2);
+            backdrop-filter: blur(4px);
+            border: 1px solid #ff3366;
             padding: 0.3rem 1rem;
-            border-radius: 40px;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 8px rgba(255,51,102,0.4);
+            color: #ff90b0;
+            margin-bottom: 1rem;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #ff3366;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #ff3366;
+            animation: pulseRed 1.2s infinite;
+        }
+
+        @keyframes pulseRed {
+            0% { opacity: 0.4; transform: scale(0.8);}
+            100% { opacity: 1; transform: scale(1.2);}
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
             line-height: 1.2;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #FFFFFF 20%, #B0F0FF 80%);
+            letter-spacing: -0.02em;
+            background: linear-gradient(125deg, #FFFFFF, #9befff);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
         }
 
-        .highlight {
-            color: #2bd6ff;
-            text-shadow: 0 0 6px rgba(43,214,255,0.3);
+        .highlight-cyan {
+            color: #2bd9ff;
+            text-shadow: 0 0 5px rgba(43,217,255,0.4);
             font-weight: 800;
+            display: inline-block;
+        }
+
+        .value-badge {
+            background: rgba(0, 200, 255, 0.15);
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #9ceeff;
         }
 
         .subhead {
-            font-size: 1.1rem;
-            color: #b9c7d9;
-            margin: 1rem 0 1.8rem 0;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #b7c3da;
+            margin: 0.8rem 0 1rem 0;
             border-left: 3px solid #2bd6ff;
-            padding-left: 1rem;
-            font-weight: 400;
+            padding-left: 0.9rem;
         }
 
-        /* limit counter style */
-        .counter-box {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            border-radius: 1.5rem;
-            padding: 0.9rem 1.2rem;
-            margin: 1.5rem 0 1.2rem 0;
+        /* counter box - compact but visible */
+        .stock-panel {
+            background: rgba(0, 0, 0, 0.55);
+            border-radius: 1.2rem;
+            padding: 0.6rem 1rem;
+            margin: 1rem 0 1rem 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
+            gap: 10px;
+            border: 1px solid rgba(43, 255, 215, 0.25);
         }
 
-        .spots-left {
-            font-weight: 700;
-            background: #ff336622;
-            padding: 0.3rem 1rem;
-            border-radius: 60px;
-            font-size: 0.9rem;
-            color: #ff98b9;
+        .stock-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #cddcff;
+            letter-spacing: 0.3px;
         }
 
-        .spots-number {
-            font-size: 2rem;
+        .stock-number {
+            font-size: 1.7rem;
             font-weight: 800;
-            color: #ffdb5b;
-            margin-right: 0.3rem;
+            color: #ffdf7e;
+            margin-right: 0.2rem;
         }
 
-        /* Form styles */
-        .form-group {
-            margin: 2rem 0 1rem;
+        .stock-badge {
+            background: #ff336622;
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #ffa3be;
+        }
+
+        /* form row - inline for speed and clarity */
+        .action-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin: 1.2rem 0 0.6rem;
         }
 
         .email-input {
             width: 100%;
-            padding: 1rem 1.4rem;
+            padding: 0.9rem 1.2rem;
             font-size: 1rem;
-            background: #0f1422;
-            border: 1.5px solid #2a3455;
+            background: #0b1022;
+            border: 1.5px solid #293256;
             border-radius: 60px;
             color: white;
-            font-family: 'Inter', monospace;
-            transition: all 0.2s;
+            font-weight: 500;
+            transition: 0.15s;
             outline: none;
         }
 
         .email-input:focus {
             border-color: #2bd6ff;
-            box-shadow: 0 0 0 3px rgba(43,214,255,0.2);
+            box-shadow: 0 0 0 2px rgba(43,214,255,0.3);
         }
 
-        .email-input::placeholder {
-            color: #5e6f8d;
-            font-weight: 400;
-        }
-
-        /* Button style (popup trigger) */
-        .btn-submit {
-            width: 100%;
-            background: linear-gradient(95deg, #0f2c4b, #0a1a33);
-            border: 1px solid rgba(43,214,255,0.6);
-            padding: 1rem;
-            font-size: 1.2rem;
+        .btn-primary {
+            background: linear-gradient(95deg, #0e2c4e, #071a30);
+            border: 1px solid rgba(43, 214, 255, 0.7);
+            padding: 0.9rem;
             font-weight: 800;
+            font-size: 1.1rem;
             color: white;
             border-radius: 60px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            margin-top: 0.5rem;
-            letter-spacing: 0.5px;
-            font-family: 'Inter', sans-serif;
             text-transform: uppercase;
-            background-size: 200% auto;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+            transition: 0.18s linear;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.4);
         }
 
-        .btn-submit:hover {
-            background: linear-gradient(95deg, #1a3e62, #0f2542);
+        .btn-primary:hover {
+            background: linear-gradient(95deg, #184a70, #0c2541);
             border-color: #2bd6ff;
-            box-shadow: 0 0 12px rgba(43,214,255,0.5);
             transform: scale(0.98);
+            box-shadow: 0 0 12px rgba(43,214,255,0.5);
         }
 
-        /* text unter dem button */
-        .wakeup-text {
-            margin-top: 1.8rem;
+        .power-line {
+            margin: 1rem 0 0.2rem;
             text-align: center;
-            font-size: 1.1rem;
-            font-weight: 600;
-            background: linear-gradient(120deg, #f0e6a0, #ffd966);
+            font-weight: 800;
+            font-size: 1rem;
+            background: linear-gradient(115deg, #ffe6a3, #ffcf5c);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
+            padding: 0.5rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
             letter-spacing: -0.2px;
-            padding: 0.8rem;
-            border-top: 1px dashed rgba(255,255,255,0.2);
         }
 
-        /* small info */
         .fine-print {
-            font-size: 0.7rem;
-            color: #6b7a9b;
+            font-size: 0.65rem;
+            color: #6a7aa0;
             text-align: center;
-            margin-top: 2rem;
+            margin-top: 1rem;
         }
 
-        /* Popup overlay (hidden by default) */
-        .popup-overlay {
+        /* POPUP overlay (fast, hardware accelerated) */
+        .popup {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -221,59 +243,54 @@
             transition: visibility 0.2s, opacity 0.2s ease;
         }
 
-        .popup-overlay.active {
+        .popup.active {
             visibility: visible;
             opacity: 1;
         }
 
-        .popup-card {
-            background: #0d1224;
+        .popup-inner {
+            background: #0c1022;
             border-radius: 2rem;
-            max-width: 480px;
+            max-width: 440px;
             width: 90%;
-            padding: 2rem 1.8rem;
+            padding: 1.8rem 1.6rem;
             border: 1px solid #2bd6ff;
-            box-shadow: 0 30px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 35px black;
             text-align: center;
             position: relative;
         }
 
-        .popup-card h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
+        .popup-inner h3 {
+            font-size: 1.7rem;
+            font-weight: 800;
             color: white;
-            margin-bottom: 0.5rem;
         }
 
-        .popup-card p {
-            color: #b4c4e0;
-            margin: 1rem 0;
+        .popup-inner p {
+            color: #b9cbee;
+            margin: 0.8rem 0;
         }
 
-        .popup-close {
+        .close-popup {
             position: absolute;
-            top: 1rem;
-            right: 1.5rem;
+            top: 0.8rem;
+            right: 1.2rem;
             font-size: 1.8rem;
             cursor: pointer;
             color: #aaa;
-            transition: color 0.2s;
+            transition: 0.1s;
         }
 
-        .popup-close:hover {
-            color: #ff6670;
-        }
-
-        .popup-form {
-            margin-top: 1.5rem;
+        .close-popup:hover {
+            color: #ff5e7a;
         }
 
         .popup-form input {
             width: 100%;
             padding: 0.9rem;
             border-radius: 60px;
-            background: #191f30;
-            border: 1px solid #2a3455;
+            background: #151e32;
+            border: 1px solid #2e3c62;
             color: white;
             margin-bottom: 1rem;
             font-size: 1rem;
@@ -284,297 +301,325 @@
             background: #2bd6ff;
             border: none;
             padding: 0.9rem;
-            font-weight: bold;
+            font-weight: 800;
             border-radius: 60px;
             font-size: 1rem;
             cursor: pointer;
-            color: #0a0e1a;
-            transition: 0.2s;
+            color: #070b18;
+            transition: 0.15s;
         }
 
         .popup-form button:hover {
-            background: #1db4d9;
+            background: #1bb0d6;
+            transform: scale(0.97);
         }
 
         @media (max-width: 550px) {
-            .container {
-                padding: 1.5rem;
+            .card {
+                padding: 1.2rem;
             }
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.55rem;
             }
-            .wakeup-text {
-                font-size: 0.95rem;
+            .power-line {
+                font-size: 0.85rem;
+            }
+            .stock-number {
+                font-size: 1.4rem;
             }
         }
+
+        /* ensure everything visible without scroll on typical desktop/tablet */
+        @media (min-height: 600px) {
+            body {
+                padding: 0.8rem;
+            }
+            .card {
+                padding: 1.4rem 1.8rem 1.8rem;
+            }
+        }
+        /* no vertical scroll needed for most screens */
+        html, body {
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+        /* but if needed, still allow minimal scroll; content fits well */
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="urgent-badge">⚡ LIMITED SLOT ACCESS ⚡</div>
-    <h1><br> <span class="highlight">1275 Fully Automated Traffic Exchanges & Mailers</span><br></h1>
-    <div class="subhead">Claim your spot before it's gone — zero manual work, fully automated traffic system.</div>
-
-    <!-- dynamic counter to show urgency (only 50 spots, we simulate remaining spots) -->
-    <div class="counter-box">
-        <span>🔥 Remaining VIP slots:</span>
-        <span class="spots-left"><span class="spots-number" id="spotsCounter">47</span> / 50 spots left</span>
+<div class="card">
+    <div class="urgency-pulse">
+        <span class="pulse-dot"></span> 
+        <span>🔒 LIMITED VIP SLOT · 50 SEATS ONLY</span>
     </div>
-
-    <!-- Email form with hidden fields + popup trigger (button will open popup) -->
-    <div class="form-group">
-        <input type="email" id="tempEmailInput" class="email-input" placeholder="your@email.com" autocomplete="email">
-        <button id="popupTriggerBtn" class="btn-submit">🔓 CLAIM MY AUTOPILOT SPOT →</button>
+    <h1>⚡ <span class="highlight-cyan">1275 Automated Traffic Exchanges & Mailers</span> — Fully Preloaded Autopilot</h1>
+    <div class="subhead">
+        🚀 Zero setup. Zero manual clicks. Activate the exact system that pushes 1275 traffic sources on autopilot.
     </div>
-
-    <!-- Der Text "WAKE UP TO 1275 AUTOMATED TRAFFIC SOURCES...." unter dem Button -->
-    <div class="wakeup-text">
-        ⚡ WAKE UP TO 1275 AUTOMATED TRAFFIC SOURCES — FULLY PRELOADED & READY. NO SETUP, JUST RESULTS. ⚡
+    
+    <!-- real-time stock counter with urgency -->
+    <div class="stock-panel">
+        <span class="stock-label">🔥 Remaining autopilot seats:</span>
+        <span class="stock-badge"><span class="stock-number" id="spotCounter">47</span> / 50 slots left</span>
+    </div>
+    
+    <!-- main action area: email + button (no scroll needed, everything visible) -->
+    <div class="action-group">
+        <input type="email" id="mainEmail" class="email-input" placeholder="Your active email address" autocomplete="email">
+        <button id="mainCtaBtn" class="btn-primary">⚡ CLAIM MY AUTOPILOT SPOT → ⚡</button>
+    </div>
+    
+    <div class="power-line">
+        🔥 WAKE UP TO 1275 AUTOMATED TRAFFIC MACHINES — PRELOADED, READY, NO SETUP. JUST RESULTS. 🔥
     </div>
     <div class="fine-print">
-        *Only 50 members will receive the complete autopilot configuration. First come, first served.
+        *Only 50 members get full autopilot configuration + access to all 1275 platforms. First locked-in, first served.
     </div>
 </div>
 
-<!-- POPUP OVERLAY - zeigt das original sendsteed Formular an, inkl. aller hidden Felder -->
-<div id="popupOverlay" class="popup-overlay">
-    <div class="popup-card">
-        <div class="popup-close" id="closePopupBtn">&times;</div>
-        <h3>⚡ LAST STEP ⚡</h3>
-        <p>Enter your active email below to secure your seat.<br><strong>Only 50 autopilot setups available.</strong></p>
-        <!-- Original form aus der Aufgabenstellung: action, hidden inputs, etc. -->
+<!-- POPUP (sendsteed form) -->
+<div id="vipPopup" class="popup">
+    <div class="popup-inner">
+        <div class="close-popup" id="closePopupBtn">&times;</div>
+        <h3>🔐 SECURE YOUR SEAT</h3>
+        <p><strong>Final step — 1275 autopilot traffic sources</strong><br>Enter your best email to activate full system access.</p>
         <form method="post" action="https://www.sendsteed.com/subscribe/" id="sendsteedForm" class="popup-form">
-            <input name="e121696" required type="text" placeholder="your@email.com" id="popupEmailInput">
+            <input name="e121696" required type="email" placeholder="your@email.com" id="popupEmail">
             <input type="hidden" name="lllid" value="121696">
             <input type="hidden" name="lluid" value="sandyarta">
             <input type="hidden" name="redirect" value="">
             <input type="hidden" name="source" value="">
-            <button type="submit">✅ YES, RESERVE MY AUTOPILOT ACCESS</button>
+            <button type="submit">✅ YES, UNLOCK AUTOPILOT NOW</button>
         </form>
-        <p style="font-size: 0.7rem; margin-top: 1rem;">We'll send setup details immediately. No spam.</p>
+        <p style="font-size: 0.7rem; margin-top: 0.8rem;">Instant access details will be sent. No spam, ever.</p>
     </div>
 </div>
 
 <script>
-    // --- DYNAMIC SPOT COUNTER (simulates diminishing spots) ---
-    // Only 50 members total, we start with 47 left for urgency, but each time someone submits (or clicks through)
-    // we decrease spots to give realistic feeling (just frontend simulation, no actual backend limit)
-    // For authenticity: on submit (popup form submit) we decrease spots + also if user clicks main CTA (optional)
-    // but better: store remaining spots in localStorage to persist across page reloads for consistent urgency.
-    let remainingSpots = 47;  // default start
-    
-    // Try to load saved spots from localStorage
-    if (localStorage.getItem('autopilotRemainingSpots')) {
-        let saved = parseInt(localStorage.getItem('autopilotRemainingSpots'), 10);
-        if (!isNaN(saved) && saved >= 0 && saved <= 50) {
-            remainingSpots = saved;
-        } else {
-            remainingSpots = 47;
-        }
-    } else {
-        // initialize with 47 remaining spots out of 50
-        remainingSpots = 47;
-        localStorage.setItem('autopilotRemainingSpots', remainingSpots);
-    }
-    
-    function updateSpotsCounterUI() {
-        const counterSpan = document.getElementById('spotsCounter');
-        if (counterSpan) {
-            counterSpan.innerText = remainingSpots;
-        }
-        // Optional: if spots reach 0, change message
-        if (remainingSpots <= 0) {
-            const box = document.querySelector('.counter-box');
-            if (box && !box.querySelector('.soldout')) {
-                const soldBadge = document.createElement('span');
-                soldBadge.className = 'spots-left soldout';
-                soldBadge.style.background = "#aa2e4e";
-                soldBadge.innerText = "❌ SOLD OUT / WAITLIST";
-                const oldSpan = box.querySelector('.spots-left');
-                if(oldSpan) oldSpan.style.display = 'none';
-                box.appendChild(soldBadge);
+    (function() {
+        // ---------- URGENCY SPOT SIMULATION (persistent, conversion-driven) ----------
+        let availableSpots = 47;      // start with 47 left, max 50
+        const STORAGE_KEY = 'autopilot1275_rem';
+
+        // load from localStorage to maintain "fading spots" across sessions
+        try {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved !== null) {
+                let parsed = parseInt(saved, 10);
+                if (!isNaN(parsed) && parsed >= 0 && parsed <= 50) {
+                    availableSpots = parsed;
+                } else {
+                    availableSpots = 47;
+                }
+            } else {
+                availableSpots = 47;
+                localStorage.setItem(STORAGE_KEY, availableSpots);
+            }
+        } catch(e) { /* silent */ }
+
+        // DOM elements
+        const spotSpan = document.getElementById('spotCounter');
+        const mainCta = document.getElementById('mainCtaBtn');
+        const mainEmailInput = document.getElementById('mainEmail');
+        const popupOverlay = document.getElementById('vipPopup');
+        const closePopupBtn = document.getElementById('closePopupBtn');
+        const popupEmailField = document.getElementById('popupEmail');
+        const sendsteedForm = document.getElementById('sendsteedForm');
+
+        function updateSpotUI() {
+            if (spotSpan) spotSpan.innerText = availableSpots;
+            // change button style if sold out
+            if (availableSpots <= 0) {
+                if (mainCta) {
+                    mainCta.innerText = '⛔ SOLD OUT · WAITLIST CLOSED ⛔';
+                    mainCta.style.opacity = '0.6';
+                    mainCta.style.cursor = 'default';
+                    mainCta.disabled = true;
+                }
+            } else {
+                if (mainCta && mainCta.disabled) {
+                    mainCta.disabled = false;
+                    mainCta.innerText = '⚡ CLAIM MY AUTOPILOT SPOT → ⚡';
+                    mainCta.style.opacity = '1';
+                }
             }
         }
-    }
-    
-    function decreaseSpot(by = 1) {
-        if (remainingSpots <= 0) return false;
-        let newSpots = remainingSpots - by;
-        if (newSpots < 0) newSpots = 0;
-        remainingSpots = newSpots;
-        localStorage.setItem('autopilotRemainingSpots', remainingSpots);
-        updateSpotsCounterUI();
-        return true;
-    }
-    
-    // initialize counter display
-    updateSpotsCounterUI();
-    
-    // Popup logic
-    const overlay = document.getElementById('popupOverlay');
-    const triggerBtn = document.getElementById('popupTriggerBtn');
-    const closeBtn = document.getElementById('closePopupBtn');
-    const popupEmailField = document.getElementById('popupEmailInput');
-    const mainPageEmailInput = document.getElementById('tempEmailInput');
-    
-    // Helper: open popup, pre-fill email from main input if present
-    function openPopup() {
-        // sync email from main field to popup field
-        if (mainPageEmailInput.value.trim() !== "") {
-            popupEmailField.value = mainPageEmailInput.value.trim();
-        } else {
-            popupEmailField.value = "";
+
+        function decreaseSpot(by = 1) {
+            if (availableSpots <= 0) return false;
+            let newVal = availableSpots - by;
+            if (newVal < 0) newVal = 0;
+            availableSpots = newVal;
+            try {
+                localStorage.setItem(STORAGE_KEY, availableSpots);
+            } catch(e) {}
+            updateSpotUI();
+            return true;
         }
-        overlay.classList.add('active');
-    }
-    
-    function closePopup() {
-        overlay.classList.remove('active');
-    }
-    
-    // Button click opens popup
-    triggerBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        // optional: if main email field is empty we can still open popup, no force validation here
-        openPopup();
-    });
-    
-    // close popup with X or clicking overlay background
-    closeBtn.addEventListener('click', closePopup);
-    overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) closePopup();
-    });
-    
-    // ESC key to close popup
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && overlay.classList.contains('active')) {
-            closePopup();
+
+        // open popup and prefill email
+        function openPopup() {
+            if (availableSpots <= 0) {
+                alert("❌ ALL 50 AUTOPILOT SEATS ARE TAKEN. The system is fully claimed. Waitlist closed.");
+                return;
+            }
+            // sync email from main field
+            if (mainEmailInput.value.trim() !== "") {
+                popupEmailField.value = mainEmailInput.value.trim();
+            } else {
+                popupEmailField.value = "";
+            }
+            popupOverlay.classList.add('active');
         }
-    });
-    
-    // HANDLE FORM SUBMIT (sendsteed original action) plus decrease spots & show thank you message
-    const form = document.getElementById('sendsteedForm');
-    form.addEventListener('submit', function(event) {
-        // We do NOT prevent default if we want actual POST to sendsteed.com.
-        // But we need to ensure the form is submitted to the original action.
-        // However we also want to decrease spots and maybe show an alert BEFORE submission.
-        // Important: we want to keep the original behavior (POST to sendsteed), but also add client-side effect.
-        // However if we just let it submit normally, the page will navigate away, and the spot decrease might not be visible.
-        // But since we want a seamless user experience, we can submit via AJAX? But the requirement says form method post action to that URL.
-        // We can keep traditional submit BUT we must also handle spot decrease BEFORE submit. And maybe popup success message.
-        // To avoid race conditions, we'll show a small "submitting..." then after submit, the spot decrease remains in localStorage.
-        // However because the page will reload to sendsteed response, we can decrease spots NOW and then let the form go.
-        // But we must also validate email is not empty.
-        const emailVal = popupEmailField.value.trim();
-        if (!emailVal) {
-            alert("Bitte gib deine E-Mail-Adresse ein, um fortzufahren.");
-            event.preventDefault();
-            return false;
+
+        function closePopup() {
+            popupOverlay.classList.remove('active');
         }
-        
-        // Decrease a spot ONLY if there are spots left > 0
-        if (remainingSpots > 0) {
-            decreaseSpot(1);
-            // Optional: store a flag that user has claimed, but we just reduce spots.
-            // Provide feedback
-            alert(`🎉 Fast geschafft! Dein Platz wurde reserviert. Du wirst zur Sendsteed-Seite weitergeleitet.\nVerbleibende Plätze: ${remainingSpots}`);
-        } else {
-            alert("❌ Es tut uns leid, alle 50 Plätze sind bereits vergeben. Du kannst dich aber auf die Warteliste setzen (trotzdem absenden).");
-            // allow submit anyway? Yes but we don't decrease below zero.
-        }
-        
-        // After this, form submits normally (no e.preventDefault) so it will go to sendsteed.com
-        // The popup will close naturally due to page reload? Better to let it submit.
-        // But to improve experience we could close popup right before submit:
-        closePopup();
-        // Ensure the hidden fields are all there - they are static.
-        // We also want to copy the email from popup input to the form field name="e121696". Already mapped.
-        // Additionally we could add a redirect url? we keep empty as per spec.
-        // Proceed with native submit.
-        return true; // will trigger actual submit
-    });
-    
-    // Additional tweak: Because form has required attribute on email input, modern browsers block empty. That's good.
-    // Also if user closes popup and submits again, we correctly reduce spots only on actual form submit.
-    // But to avoid double counting when user submits multiple times, we could implement a short localStorage token?
-    // But with the decrease logic each time they submit, they will reduce a spot. In real scenario only valid submissions count.
-    // That's fine for frontend urgency simulation.
-    
-    // Optional: sync main page email to popup when popup opens if main input changes (already done in openPopup)
-    // Also if user wants to submit from main CTA without opening popup? The button only opens popup, no direct submission.
-    // So we're consistent: Button triggers popup, then user submits via popup form.
-    
-    // To improve mobile styling, we also add some extra polishing: 
-    // Also for demonstration, if the user clicks 'X' inside popup, it just closes.
-    
-    // Additional requirement: "unter den button soll dan dein text WAKE UP TO 1275 AUTOMATED TRAFFIC SOURCES.... kommen"
-    // That text is already placed exactly after button inside div.wakeup-text (fully visible under the submit button).
-    
-    // bonus: Add focus effect and copy
-    // Also, due to cross-origin redirection after form submit, we cannot control the final landing, but that's expected.
-    
-    // To make spots counter interactive but still honest: We simulate limited membership.
-    // Also we can add feature: When user revisits, they see updated spots based on localStorage.
-    
-    // If spots become zero, we disable button visual feedback? optional.
-    function updateButtonStateIfSoldOut() {
-        if (remainingSpots <= 0) {
-            triggerBtn.style.opacity = "0.7";
-            triggerBtn.style.cursor = "not-allowed";
-            triggerBtn.innerText = "⛔ SOLD OUT · WAITLIST CLOSED ⛔";
-            triggerBtn.disabled = true;
-            // also disable popup trigger if needed
-            triggerBtn.removeEventListener('click', openPopup);
-            triggerBtn.addEventListener('click', (e) => {
+
+        // Event listeners for popup
+        if (mainCta) {
+            mainCta.addEventListener('click', (e) => {
                 e.preventDefault();
-                alert("Alle 50 Autopilot-Lizenzen wurden bereits vergeben. Vielen Dank für dein Interesse!");
+                // optional: quick validation - show message if no email but still open popup (conversion focused)
+                if (mainEmailInput.value.trim() === "") {
+                    // subtle nudge: but we still open popup to capture lead
+                    // but for better UX we show small alert? it's persuasive: "email required to reserve"
+                    alert("⚡ Enter your email to lock in your autopilot seat before spots run out.");
+                    mainEmailInput.focus();
+                    return;
+                }
+                openPopup();
             });
-        } else {
-            triggerBtn.disabled = false;
-            triggerBtn.innerText = "🔓 CLAIM MY AUTOPILOT SPOT →";
         }
-    }
-    
-    // call initial check
-    updateButtonStateIfSoldOut();
-    // Override decreaseSpot to also call button state update
-    const originalDecrease = decreaseSpot;
-    window.decreaseSpot = function(by) {
-        const result = originalDecrease(by);
-        updateButtonStateIfSoldOut();
-        return result;
-    };
-    // replace decreaseSpot reference
-    decreaseSpot = function(by = 1) {
-        if (remainingSpots <= 0) return false;
-        let newSpots = remainingSpots - by;
-        if (newSpots < 0) newSpots = 0;
-        remainingSpots = newSpots;
-        localStorage.setItem('autopilotRemainingSpots', remainingSpots);
-        updateSpotsCounterUI();
-        updateButtonStateIfSoldOut();
-        return true;
-    };
-    // reattach to global for safety (already)
-    window.decreaseSpot = decreaseSpot;
-    // Re-run sync button state after loading.
-    updateButtonStateIfSoldOut();
-    
-    // Additional improvement: if user submits the popup form but spots were 0, we still let submit but alert.
-    // we also want to make sure the spot counter doesn't go negative.
-    // Already handled in decreaseSpot.
-    
-    // In case the popup gets closed and reopened, maintain sync of email.
-    // we can also listen to input changes on main email field
-    mainPageEmailInput.addEventListener('input', () => {
-        if (overlay.classList.contains('active')) {
-            // if popup open, update live
-            popupEmailField.value = mainPageEmailInput.value;
+
+        if (closePopupBtn) closePopupBtn.addEventListener('click', closePopup);
+        if (popupOverlay) {
+            popupOverlay.addEventListener('click', (e) => {
+                if (e.target === popupOverlay) closePopup();
+            });
         }
-    });
-    
-    // Ensure form has redirect and source optional, already defined.
-    console.log("Landingpage bereit – 1275 Traffic Exclusiv Autopilot Setup");
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && popupOverlay && popupOverlay.classList.contains('active')) closePopup();
+        });
+
+        // Handle sendsteed form submission (decrease spot, allow POST, ensure email)
+        if (sendsteedForm) {
+            sendsteedForm.addEventListener('submit', function(event) {
+                const emailVal = popupEmailField.value.trim();
+                if (!emailVal) {
+                    alert("❗ Please enter your active email address to reserve your autopilot configuration.");
+                    event.preventDefault();
+                    return false;
+                }
+                
+                // If spots already 0, we still allow signup but show warning
+                if (availableSpots <= 0) {
+                    alert("⚠️ All VIP spots are already gone. You can still submit to join waitlist for next batch.");
+                    // allow submission but no spot decrease
+                    closePopup();
+                    return true;
+                }
+                
+                // Decrease one seat
+                const successDecrease = decreaseSpot(1);
+                if (successDecrease) {
+                    // Persuasive confirmation: show remaining spots count
+                    alert(`✅ RESERVED! Your autopilot seat is locked. (${availableSpots} spots left — almost gone!)\nYou will be redirected to complete access.`);
+                } else {
+                    alert("⚠️ All spots just expired. Still submit to be notified on relaunch.");
+                }
+                closePopup();
+                // form will submit naturally to sendsteed action
+                return true;
+            });
+        }
+
+        // live sync main email to popup field when popup is open (persuasive)
+        if (mainEmailInput && popupEmailField) {
+            mainEmailInput.addEventListener('input', function() {
+                if (popupOverlay && popupOverlay.classList.contains('active')) {
+                    popupEmailField.value = mainEmailInput.value;
+                }
+            });
+        }
+        
+        // bonus: make sure that if user types in popup directly it's fine
+        
+        // update UI on load
+        updateSpotUI();
+        
+        // additional extreme scarcity: if spots go to 0, the main button becomes disabled, we also prevent popup open 
+        // function already handled in openPopup with availableSpots check.
+        // also updateSpotUI triggers button text/disabled
+        // Double-check sold-out disable for mainCta
+        function checkAndDisableIfSoldOut() {
+            if (availableSpots <= 0 && mainCta) {
+                mainCta.disabled = true;
+                mainCta.innerText = '⛔ SOLD OUT · 50/50 CLAIMED ⛔';
+                mainCta.style.opacity = '0.7';
+                mainCta.style.cursor = 'not-allowed';
+            } else if (mainCta) {
+                mainCta.disabled = false;
+                mainCta.innerText = '⚡ CLAIM MY AUTOPILOT SPOT → ⚡';
+            }
+        }
+        checkAndDisableIfSoldOut();
+        
+        // override decreaseSpot to also re-check
+        const origDecrease = decreaseSpot;
+        window.decreaseSpot = function(by) {
+            const result = origDecrease(by);
+            checkAndDisableIfSoldOut();
+            return result;
+        };
+        // ensure that any call goes through
+        decreaseSpot = function(by) {
+            if (availableSpots <= 0) return false;
+            let newSpots = availableSpots - (by || 1);
+            if (newSpots < 0) newSpots = 0;
+            availableSpots = newSpots;
+            localStorage.setItem(STORAGE_KEY, availableSpots);
+            updateSpotUI();
+            checkAndDisableIfSoldOut();
+            return true;
+        };
+        
+        // extra persuasive hover micro-copy on button: "only X seats"
+        if (mainCta) {
+            const updateHoverText = () => {
+                if (availableSpots > 0 && availableSpots <= 10) {
+                    mainCta.setAttribute('data-hover', `🔥 LAST ${availableSpots} SPOTS! 🔥`);
+                } else if (availableSpots > 0) {
+                    mainCta.setAttribute('data-hover', `⚡ RESERVE BEFORE GONE ⚡`);
+                }
+            };
+            updateHoverText();
+            // quick dynamic
+            setInterval(() => {
+                if (availableSpots !== parseInt(spotSpan?.innerText || '0')) {
+                    updateSpotUI();
+                    checkAndDisableIfSoldOut();
+                    updateHoverText();
+                }
+            }, 300);
+        }
+        
+        // Ensure page loads fully with no scroll issues: content compact 
+        // also add slight message if spots are low
+        const stockPanel = document.querySelector('.stock-panel');
+        if (availableSpots <= 5 && availableSpots > 0 && stockPanel) {
+            const warnSpan = document.createElement('span');
+            warnSpan.style.fontSize = "0.7rem";
+            warnSpan.style.fontWeight = "bold";
+            warnSpan.style.color = "#ff9f6e";
+            warnSpan.innerText = "❗ CRITICAL: almost sold out!";
+            stockPanel.appendChild(warnSpan);
+        }
+        
+        // fast load: remove any console logs but keep clean
+        // Prefill redirect empty as required.
+        console.log("1275 Auto Traffic system ready — conversion optimized");
+    })();
 </script>
 </body>
 </html>
