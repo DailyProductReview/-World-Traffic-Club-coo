@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Buyer Traffic | RLS + RRR Systems</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0c2e3b 0%, #174f62 100%);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* main wrapper — exactly fits viewport height without scroll on 1080p+ */
+    .landing-page {
+      max-width: 1400px;
+      width: 100%;
+      background: #FEFCF7;
+      border-radius: 48px;
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.25);
+      overflow-y: auto;
+      max-height: 96vh;
+      scrollbar-width: thin;
+    }
+
+    /* custom scroll only if needed, but content is compact */
+    .landing-page::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .inner-container {
+      padding: 1.6rem 2rem 1.8rem 2rem;
+    }
+
+    /* hero header */
+    .hero-section {
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(125deg, #1A4C5C, #2F7A6E);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+
+    .main-title span {
+      background: linear-gradient(125deg, #E16A2C, #FFB347);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .sub-tag {
+      font-size: 0.85rem;
+      color: #2A6B5E;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    /* two column layout for both systems */
+    .systems-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.6rem;
+      margin: 1rem 0 1rem 0;
+    }
+
+    .system-card {
+      flex: 1;
+      min-width: 280px;
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+      transition: all 0.2s ease;
+      border: 1px solid #f0e5d2;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .system-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 36px -12px rgba(0, 0, 0, 0.2);
+      border-color: #FFB757;
+    }
+
+    .card-img {
+      width: 100%;
+      background: #faf5e8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem 1rem 0 1rem;
+    }
+
+    .card-img img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 20px;
+      object-fit: contain;
+      max-height: 160px;
+    }
+
+    .card-content {
+      padding: 1rem 1.3rem 1.2rem;
+    }
+
+    .card-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #1E4A5C;
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+
+    .price-badge {
+      background: #FFEAD2;
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #C4511B;
+      margin-bottom: 12px;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin: 12px 0;
+    }
+
+    .feature-list li {
+      font-size: 0.8rem;
+      padding: 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #2b5f6b;
+      font-weight: 500;
+    }
+
+    .feature-list li::before {
+      content: "🔥";
+      font-size: 0.75rem;
+    }
+
+    .desc-text {
+      font-size: 0.82rem;
+      line-height: 1.4;
+      color: #2C4E5C;
+      margin: 12px 0;
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      width: 100%;
+      background: linear-gradient(95deg, #E16A2C, #FF9F3D);
+      text-align: center;
+      padding: 12px 0;
+      border-radius: 60px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: white;
+      text-decoration: none;
+      margin-top: 12px;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(95deg, #c85518, #e8892c);
+      transform: scale(0.98);
+    }
+
+    .coupon-note {
+      font-size: 0.7rem;
+      background: #FEF3E0;
+      padding: 6px;
+      border-radius: 30px;
+      text-align: center;
+      margin-top: 10px;
+      font-weight: 600;
+      color: #B45F2B;
+    }
+
+    /* RAPID recurring revenue specific */
+    .rr-badge {
+      background: #1f5e6e20;
+      color: #1B6B5E;
+    }
+
+    /* newsletter area — compact but persuasive */
+    .newsletter-block {
+      background: #FDF5E6;
+      border-radius: 28px;
+      padding: 0.9rem 1.5rem;
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid #FFDEAD;
+    }
+
+    .newsletter-text h4 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #1A4C5C;
+    }
+
+    .newsletter-text p {
+      font-size: 0.7rem;
+      color: #576f7a;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .newsletter-form input {
+      padding: 10px 16px;
+      border-radius: 60px;
+      border: 1px solid #d4cfc0;
+      background: white;
+      min-width: 200px;
+      font-size: 0.8rem;
+    }
+
+    .newsletter-form button {
+      background: #1E4A5C;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 60px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.6rem;
+      color: #8aa6b0;
+      margin-top: 0.8rem;
+    }
+
+    @media (max-width: 900px) {
+      .inner-container {
+        padding: 1rem;
+      }
+      .main-title {
+        font-size: 1.5rem;
+      }
+      .card-title {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-height: 780px) {
+      .landing-page {
+        max-height: 98vh;
+      }
+      .inner-container {
+        padding: 0.8rem 1rem;
+      }
+      .feature-list li {
+        font-size: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="landing-page">
+  <div class="inner-container">
+    <div class="hero-section">
+      <h1 class="main-title">Everybody Needs Traffic – But You Need <span>Buyer Traffic.</span><br>Here's Where to Get It.</h1>
+      <div class="sub-tag">⚡ vetted high-intent systems | turn clicks into lifetime subscribers & recurring revenue ⚡</div>
+    </div>
+
+    <!-- TWO MAIN OFFERS SIDE BY SIDE: RLS + RAPID RECURRING REVENUE -->
+    <div class="systems-row">
+      
+      <!-- LEFT: Rapid List Building System -->
+      <div class="system-card">
+        <div class="card-img">
+          <img src="https://epcfire.com/wp-content/uploads/2025/08/rls-final-new.png" alt="Rapid List Building System">
+        </div>
+        <div class="card-content">
+          <div class="card-title">🔥 Rapid List Building System</div>
+          <div class="price-badge">⭐ Price Rises To $147 ⭐</div>
+          <div class="desc-text">
+            <strong>Hyper responsive email list for affiliate marketing.</strong> Wake up to an avalanche of new subscribers, customers & sales on autopilot. Steal my exact landing pages, emails & traffic source — watch me build it in real-time and clone me!
+          </div>
+          <ul class="feature-list">
+            <li>✅ Done-for-you landing pages ($497 value)</li>
+            <li>✅ Ready-to-send email sequences that convert</li>
+            <li>✅ Secret traffic source for fresh buyer leads</li>
+            <li>✅ Over-the-shoulder setup + lifetime access</li>
+          </ul>
+          <div class="coupon-note">🎁 Apply coupon code <strong>"RLS40"</strong> at checkout for $40 OFF → Just $57 today!</div>
+          <a href="https://warriorplus.com/o2/a/tt3bzb5/0/twice" target="_blank" rel="noopener noreferrer" class="btn-primary">🚀 See How It Works → Get Instant Access</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: RAPID Recurring Revenue (with button for video/how it works + link to warriorplus) -->
+      <div class="system-card">
+        <div class="card-img">
+          <img src="https://assets.cdn.filesafe.space/C0p4TV1ZlgnjtugT4KbZ/media/67d1851f6028542b13bb3dc7.png" alt="RAPID Recurring Revenue">
+        </div>
+        <div class="card-content">
+          <div class="card-title">💰 RAPID Recurring Revenue</div>
+          <div class="price-badge rr-badge">💎 LIMITED TIME: $97 (was $147)</div>
+          <div class="desc-text">
+            <strong>Stop selling one-off products. Start building a 'Set & Forget' continuity program.</strong> Discover how to quickly create a fixed-term membership that pays you monthly like clockwork. Used by top 1% affiliates.
+          </div>
+          <ul class="feature-list">
+            <li>✅ 5-step R.A.P.I.D. TimeShift™ blueprint</li>
+            <li>✅ Bonus: content templates + retention toolkit</li>
+            <li>✅ 7-day launch accelerator (first 25 members)</li>
+            <li>✅ Fixed-term memberships = 60-80% higher completion</li>
+          </ul>
+          <div class="coupon-note">🎁 All bonuses included: sales letter swipes, cheatsheet & more (value $197+)</div>
+          <a href="https://warriorplus.com/o2/a/mvvqmmf/0/twice" target="_blank" rel="noopener noreferrer" class="btn-primary">🎥 See Video & Get RRR System →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BONUS: Additional buyer traffic links (original 7 clickable titles) but compact grid to keep no-scroll? we add below in a mini grid but ensure not to exceed viewport. 
+         Since we have two big cards + newsletter, we can add an extra row of "premium buyer traffic sources" as a compact horizontal wrap -->
+    <div style="margin: 1rem 0 0.8rem 0;">
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+        <span style="background: #FFB34720; padding: 4px 12px; border-radius: 40px; font-size: 0.7rem; font-weight: 800; color:#B45F2B;">🔥 BONUS: Buyer Traffic Vault 🔥</span>
+        <span style="font-size: 0.7rem; color:#4A6F7A;">click any — opens new window</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between;">
+        <!-- 7 links with compelling titles and warrior+ / trafficzest -->
+        <a href="https://warriorplus.com/o2/a/yxf1kwg/0/twice" target="_blank" rel="noopener noreferrer" style="flex:1; min-width: 110px; background:#fff6ea; border-radius: 60px; padding: 6px 10px; text-align:center; font-size:0.7rem; font-weight:700; color:#C04E1F; text-decoration:none; border:1px solid #ffd8a5;">🎯 Buyer Avalanche</a>
+        <a href="https://warriorplus.com/o2/a/q5h67kh/0/twice" target="_blank" rel="noopener noreferrer" style="flex:1; min-width: 110px; background:#fff6ea; border-radius: 60px; padding: 6px 10px; text-align:center; font-size:0.7rem; font-weight:700; color:#C04E1F; text-decoration:none;">💰 Profit Surge System</a>
+        <a href="https://warriorplus.com/o2/a/jxwxp06/0/twice" target="_blank" rel="noopener noreferrer" style="flex:1; min-width: 110px; background:#fff6ea; border-radius: 60px; padding: 6px 10px; text-align:center; font-size:0.7rem; font-weight:700; color:#C04E1F; text-decoration:none;">📈 HyperBuyer Vault</a>
+        <a href="https://warriorplus.com/o2/a/qdhhd35/0/twice" target="_blank" rel="noopener noreferrer" style="flex:1; min-width: 110px; background:#fff6ea; border-radius: 60px; padding: 6px 10px; text-align:center; font-size:0.7rem; font-weight:700; color:#C04E1F; text-decoration:none;">⚡ Buyer Blitz</a>
+        <a href="https://warriorplus.com/o2/a/b30zsh/0/twice" target="_blank" rel="noopener noreferrer" style="flex:1; min-width: 110px; background:#fff6ea; border-radius: 60px; padding: 6px 10px; text-align:center; font-size:0.7rem; font-weight:700; color:#C04E1F; text-decoration:none;">💎 Elite Commissions</a>
+        <a href="https://warriorplus.com/o2/a/bc0th0x/0/twice" target="_blank" rel="noopener noreferrer" style="flex:1; min-width: 110px; background:#fff6ea; border-radius: 60px; padding: 6px 10px; text-align:center; font-size:0.7rem; font-weight:700; color:#C04E1F; text-decoration:none;">🚀 Buyer Traffic Surge</a>
+        <a href="https://trafficzest.com/?rft1=d485d4b7-8a1d-468e-a797-b155d76e8f74" target="_blank" rel="noopener noreferrer" style="flex:1; min-width: 110px; background:#fff0df; border-radius: 60px; padding: 6px 10px; text-align:center; font-size:0.7rem; font-weight:700; color:#C04E1F; text-decoration:none;">🌊 TrafficZest Elite</a>
+      </div>
+    </div>
+
+    <!-- Newsletter + email signup block (sendsteed form) -->
+    <div class="newsletter-block">
+      <div class="newsletter-text">
+        <h4>📬 Want updates on high-converting traffic & systems?</h4>
+        <p>Get fresh buyer traffic sources, secret bonuses & insider tactics. Don't miss next launches.</p>
+      </div>
+      <form method="post" action="https://www.sendsteed.com/subscribe/" class="newsletter-form">
+        <input type="text" name="e123432" required placeholder="your@email.com">
+        <input type="hidden" name="lllid" value="123432">
+        <input type="hidden" name="lluid" value="sandyarta">
+        <input type="hidden" name="redirect" value="">
+        <input type="hidden" name="source" value="twicebuyerpage">
+        <button type="submit">Subscribe & Get Updates →</button>
+      </form>
+    </div>
+
+    <div class="footer-note">
+      ⚡ Instant access • 365-day guarantee on RLS • 30-day refund on RRR • All links open in new tab
+    </div>
+  </div>
+</div>
+</body>
+</html>
