@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head:
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Online Business Growth Suite | AI Tools & High-Converting Systems</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0A1F2E 0%, #1A3A4F 100%);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* main container - fits viewport without scroll on 1080p+ */
+    .business-landing {
+      max-width: 1400px;
+      width: 100%;
+      background: #FEFCF7;
+      border-radius: 48px;
+      box-shadow: 0 30px 45px rgba(0, 0, 0, 0.3);
+      overflow-y: auto;
+      max-height: 96vh;
+      scrollbar-width: thin;
+    }
+
+    .business-landing::-webkit-scrollbar {
+      width: 5px;
+      background: #E0D6C8;
+      border-radius: 10px;
+    }
+
+    .inner-wrap {
+      padding: 1.4rem 1.8rem 1.6rem 1.8rem;
+    }
+
+    /* hero header */
+    .hero {
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .main-headline {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1A4C6E, #2E8B8B);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .main-headline span {
+      background: linear-gradient(135deg, #E68A2E, #FFB347);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subhead {
+      font-size: 0.85rem;
+      color: #2F6B6B;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    /* grid for all products - all cards identical image size */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin: 1rem 0 1rem 0;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+      transition: all 0.25s ease;
+      border: 1px solid #F0E2D0;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.2);
+      border-color: #FFB347;
+    }
+
+    /* UNIFORM IMAGE CONTAINER - same exact height for every product image */
+    .image-uniform {
+      width: 100%;
+      height: 200px;
+      background: #FDF8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      border-bottom: 1px solid #f3e9dd;
+    }
+
+    .image-uniform img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      transition: transform 0.2s;
+    }
+
+    .card-body {
+      padding: 1rem 1rem 1.2rem 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #1C4E5A;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    .benefits {
+      font-size: 0.75rem;
+      color: #4A6F6E;
+      margin: 0.5rem 0;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .benefits strong {
+      color: #D45A1C;
+    }
+
+    .bullet-list {
+      list-style: none;
+      margin: 8px 0;
+    }
+
+    .bullet-list li {
+      font-size: 0.7rem;
+      padding: 3px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #2C5A5A;
+      font-weight: 500;
+    }
+
+    .bullet-list li::before {
+      content: "🚀";
+      font-size: 0.7rem;
+    }
+
+    .btn-sm {
+      background: linear-gradient(95deg, #E67E22, #F39C12);
+      text-align: center;
+      padding: 10px 0;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: white;
+      text-decoration: none;
+      margin-top: 12px;
+      transition: 0.2s;
+      display: block;
+    }
+
+    .btn-sm:hover {
+      background: linear-gradient(95deg, #CE6A18, #E68A1F);
+      transform: scale(0.97);
+    }
+
+    .coupon {
+      font-size: 0.65rem;
+      background: #FFF1E0;
+      padding: 4px 8px;
+      border-radius: 30px;
+      text-align: center;
+      margin-top: 8px;
+      font-weight: 600;
+      color: #B45F2B;
+    }
+
+    /* newsletter block compact */
+    .news-wrapper {
+      background: #FEF5E8;
+      border-radius: 28px;
+      padding: 0.8rem 1.2rem;
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid #FFDEAD;
+    }
+
+    .news-text h4 {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #1A5A5A;
+    }
+
+    .news-text p {
+      font-size: 0.68rem;
+      color: #5E7B7B;
+    }
+
+    .news-form {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .news-form input {
+      padding: 8px 16px;
+      border-radius: 60px;
+      border: 1px solid #DCCAB0;
+      background: white;
+      min-width: 190px;
+      font-size: 0.75rem;
+    }
+
+    .news-form button {
+      background: #1C5A5A;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 60px;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+
+    /* VISUAL END CUE - shows user clearly that they reached the bottom */
+    .end-cue {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 1.2rem;
+      padding-top: 0.8rem;
+      border-top: 2px dashed #DCC6A8;
+    }
+
+    .end-cue span {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #9B7B4C;
+      letter-spacing: 0.5px;
+      background: #FDF5E6;
+      padding: 4px 14px;
+      border-radius: 40px;
+    }
+
+    .end-cue .arrow-down {
+      font-size: 1.2rem;
+      animation: gentleBounce 1.8s infinite;
+      display: inline-block;
+    }
+
+    @keyframes gentleBounce {
+      0%, 100% { transform: translateY(0px); opacity: 0.7; }
+      50% { transform: translateY(4px); opacity: 1; }
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.6rem;
+      color: #88A39B;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 780px) {
+      .inner-wrap {
+        padding: 1rem;
+      }
+      .main-headline {
+        font-size: 1.5rem;
+      }
+      .image-uniform {
+        height: 170px;
+      }
+      .end-cue span {
+        font-size: 0.6rem;
+      }
+    }
+
+    @media (max-height: 800px) {
+      .business-landing {
+        max-height: 98vh;
+      }
+      .inner-wrap {
+        padding: 0.8rem 1rem;
+      }
+      .products-grid {
+        gap: 1rem;
+      }
+      .end-cue {
+        margin-top: 0.8rem;
+        padding-top: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="business-landing">
+  <div class="inner-wrap">
+    <div class="hero">
+      <h1 class="main-headline">🚀 <span>Scale Your Online Business</span> 🚀<br>Proven Programs That Actually Help You Grow & Monetize</h1>
+      <div class="subhead">💼 AI tools • High-converting funnels • Email mastery • Funny ads • Done-for-you systems 💼</div>
+    </div>
+
+    <!-- GRID: 10 business growth products ALL with identical image size container -->
+    <div class="products-grid">
+
+      <!-- 1. AI Business Growth Suite -->
+      <a href="https://shop.offerlab.com/ai-business-growth-suite-launch-lead-and-monetize-your-online-empire-fc502b1c" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://app.offerlab.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBamFFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a940e4a9fbac6da7951c42fa9045dbbfe63d5fdc/1000377323.png" alt="AI Business Growth Suite"></div>
+        <div class="card-body">
+          <div class="product-title">🤖 AI Business Growth Suite</div>
+          <div class="benefits"><strong>Launch, Lead & Monetize Your Online Empire</strong> – All-in-one AI system</div>
+          <ul class="bullet-list">
+            <li>Automate lead generation & sales</li>
+            <li>AI-powered funnel optimization</li>
+            <li>Scale to 6-figures faster</li>
+          </ul>
+          <div class="btn-sm">⚡ Get AI Growth Suite →</div>
+        </div>
+      </a>
+
+      <!-- 2. Jonathan Montoya - 3 Day VSL -->
+      <a href="https://www.jonathanmontoyalive.com/3dayvsl-ol?ol=JXkmwy" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/VanHJ8jN856H2VmNbiWS/media/672385a3d24347e95fc21e3d.png" alt="Jonathan Montoya 3 Day VSL"></div>
+        <div class="card-body">
+          <div class="product-title">🎥 3-Day VSL Profit System</div>
+          <div class="benefits"><strong>High-Converting Video Sales Letter Blueprint</strong></div>
+          <ul class="bullet-list">
+            <li>Create VSLs that sell on autopilot</li>
+            <li>Copy & paste template</li>
+            <li>Turn viewers into buyers</li>
+          </ul>
+          <div class="btn-sm">🔥 Master VSLs Now →</div>
+        </div>
+      </a>
+
+      <!-- 3. High-Converting Email Sequence Mastery -->
+      <a href="https://shop.offerlab.com/high-converting-email-sequence-mastery-by-kristine-mirelle-4828566d" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://app.offerlab.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdUMrIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8cdf3d0096bfe94435d7ec632a86bc6c61bdb62e/dc.png" alt="Email Sequence Mastery"></div>
+        <div class="card-body">
+          <div class="product-title">📧 Email Sequence Mastery</div>
+          <div class="benefits"><strong>By Kristine Mirelle</strong> – Turn subscribers into cash</div>
+          <ul class="bullet-list">
+            <li>Done-for-you high-converting emails</li>
+            <li>Automated sales sequences</li>
+            <li>Boost open rates & commissions</li>
+          </ul>
+          <div class="btn-sm">💰 Unlock Email Profits →</div>
+        </div>
+      </a>
+
+      <!-- 4. Funny Ads Academy -->
+      <a href="https://shop.offerlab.com/kristine-mirelle-s-funny-ads-academy-boost-commissions-with-humorous-advertising-strategies-8740fca1" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://app.offerlab.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbVBBIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--479fbc3b55aef232b29fd545a4f3c8a121cafa76/funny-ads-academy-bundle.png" alt="Funny Ads Academy"></div>
+        <div class="card-body">
+          <div class="product-title">😂 Funny Ads Academy</div>
+          <div class="benefits"><strong>Boost Commissions with Humor</strong> – Viral ad strategies</div>
+          <ul class="bullet-list">
+            <li>Create scroll-stopping funny ads</li>
+            <li>Lower CPMs, higher engagement</li>
+            <li>Proven templates & scripts</li>
+          </ul>
+          <div class="btn-sm">🎭 Get Funny Ads Bundle →</div>
+        </div>
+      </a>
+
+      <!-- 5. Camila Markson - Funnel Sales Page -->
+      <a href="https://funnel.camilamarkson.com/ofsales-page?ol=YzmXnP" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/EHRTchpCt5zWTF6K3dIf/media/687708fba07103ee49d49556.png" alt="Camila Markson Funnel"></div>
+        <div class="card-body">
+          <div class="product-title">🎯 High-Converting Funnel System</div>
+          <div class="benefits"><strong>Camila Markson's OF Sales Page Blueprint</strong></div>
+          <ul class="bullet-list">
+            <li>Done-for-you funnel templates</li>
+            <li>Optimized for conversions</li>
+            <li>Scale your offers fast</li>
+          </ul>
+          <div class="btn-sm">📈 Get Funnel System →</div>
+        </div>
+      </a>
+
+      <!-- 6. Email2Freedom -->
+      <a href="https://prodifydigital.com/email2freedom-ol?ol=YGBzVw" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://images.groovetech.io/ZAo3SvWag1zQ8jMuQFTs7XQWGLq7JcBvQihltVBydzg/rs:fit:0:0:0/g:no:0:0/c:0:0/aHR0cHM6Ly9hc3NldHMuZ3Jvb3ZlYXBwcy5jb20vaW1hZ2VzL2RjZDU3M2E4LWU1OGEtNDE2Yy1hYjA1LTQwN2E3MjQwZWM5OC8xNzU4MDI3MTQzX0VtYWlsMkZyZWVkb20ucG5n.webp" alt="Email2Freedom"></div>
+        <div class="card-body">
+          <div class="product-title">📬 Email2Freedom System</div>
+          <div class="benefits"><strong>Automated Email Income Machine</strong></div>
+          <ul class="bullet-list">
+            <li>Set & forget email campaigns</li>
+            <li>Passive commissions daily</li>
+            <li>No list? No problem</li>
+          </ul>
+          <div class="btn-sm">✉️ Start Email Freedom →</div>
+        </div>
+      </a>
+
+      <!-- 7. Millionaire Offer Blueprint -->
+      <a href="https://shop.offerlab.com/millionaire-offer-blueprint-automate-cash-flow-and-create-high-converting-revenue-streams-10dc19d2" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://app.offerlab.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaHUwIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--224c90ee6f58592871e3f86cdb398b28ad79f495/843193a7ec8fe246110638f7d84fc9eb.jpg" alt="Millionaire Offer Blueprint"></div>
+        <div class="card-body">
+          <div class="product-title">💎 Millionaire Offer Blueprint</div>
+          <div class="benefits"><strong>Automate Cash Flow & High-Converting Revenue Streams</strong></div>
+          <ul class="bullet-list">
+            <li>Create irresistible offers</li>
+            <li>Systemize your sales process</li>
+            <li>Scale to 7-figures</li>
+          </ul>
+          <div class="btn-sm">💸 Get The Blueprint →</div>
+        </div>
+      </a>
+
+      <!-- 8. Stephy Chen - Yes Green OfferLab -->
+      <a href="https://stephychen.com/yes-green-offerlab?ol=jWbDzR" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/7Mh5x0gQKE5DYXBHzmKN/media/f65dcb52-0e6b-4fe4-a12b-0d0bd4042a53.png" alt="Stephy Chen Yes Green"></div>
+        <div class="card-body">
+          <div class="product-title">🌿 Yes Green Offer System</div>
+          <div class="benefits"><strong>Stephy Chen's Ethical Sales Funnel</strong></div>
+          <ul class="bullet-list">
+            <li>Sustainable business growth</li>
+            <li>High-integrity converting offers</li>
+            <li>Done-for-you assets</li>
+          </ul>
+          <div class="btn-sm">🌱 Launch Yes Green →</div>
+        </div>
+      </a>
+
+      <!-- 9. AI Freedom Launchpad (Ted's Assist) -->
+      <a href="https://tedsassist.com/ai-freedom-launchpad?ol=YDbgor" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/YBqo83vMMAR7sWv8wqGg/media/681928a8eeac3719ee71be56.png" alt="AI Freedom Launchpad"></div>
+        <div class="card-body">
+          <div class="product-title">🤖 AI Freedom Launchpad</div>
+          <div class="benefits"><strong>Automate Your Business with AI</strong> – Ted's Assist System</div>
+          <ul class="bullet-list">
+            <li>AI-powered lead generation</li>
+            <li>Automate customer support</li>
+            <li>Scale without extra team</li>
+          </ul>
+          <div class="btn-sm">🚀 Launch AI Freedom →</div>
+        </div>
+      </a>
+
+      <!-- 10. Funny Ads Academy (Duplicate from above but unique link - second instance) -->
+      <a href="https://shop.offerlab.com/kristine-mirelle-s-funny-ads-academy-boost-commissions-with-humorous-advertising-strategies-8740fca1" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://app.offerlab.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbVBBIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--479fbc3b55aef232b29fd545a4f3c8a121cafa76/funny-ads-academy-bundle.png" alt="Funny Ads Academy Pro"></div>
+        <div class="card-body">
+          <div class="product-title">🎭 Funny Ads Academy PRO</div>
+          <div class="benefits"><strong>Viral Humor Strategy + Bonuses</strong> – Double your ad ROI</div>
+          <ul class="bullet-list">
+            <li>Advanced funny ad templates</li>
+            <li>Reduce ad costs by 40%</li>
+            <li>High-engagement hooks</li>
+          </ul>
+          <div class="btn-sm">😂 Get Pro Bundle →</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Newsletter section: updates about business tools & offers -->
+    <div class="news-wrapper">
+      <div class="news-text">
+        <h4>📬 Want updates on new business growth systems & AI tools?</h4>
+        <p>Get notified about fresh launches, exclusive discounts & high-converting strategies.</p>
+      </div>
+      <form method="post" action="https://www.sendsteed.com/subscribe/" class="news-form">
+        <input type="text" name="e123432" required placeholder="your@email.com">
+        <input type="hidden" name="lllid" value="123432">
+        <input type="hidden" name="lluid" value="sandyarta">
+        <input type="hidden" name="redirect" value="">
+        <input type="hidden" name="source" value="businessgrowth2026">
+        <button type="submit">Subscribe & Scale →</button>
+      </form>
+    </div>
+
+    <!-- VISUAL END CUE: makes it obvious that this is the bottom of the page -->
+    <div class="end-cue">
+      <span class="arrow-down">▼</span>
+      <span>✨ YOU'VE REACHED THE BOTTOM — ALL BUSINESS SYSTEMS LOADED ✨</span>
+      <span class="arrow-down">▼</span>
+    </div>
+
+    <div class="footer-note">
+      ✅ Proven business systems • Real entrepreneur results • All links open secure pages • Risk-free guarantees on most products
+    </div>
+  </div>
+</div>
+</body>
+</html>
