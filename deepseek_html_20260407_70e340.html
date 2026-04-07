@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Proven Health Solutions | Clinically Tested Men's & Women's Wellness</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #0E2F2F 0%, #1B4F4F 100%);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* main container - fits viewport without scroll on 1080p+ */
+    .health-landing {
+      max-width: 1400px;
+      width: 100%;
+      background: #FFFDF9;
+      border-radius: 48px;
+      box-shadow: 0 30px 45px rgba(0, 0, 0, 0.3);
+      overflow-y: auto;
+      max-height: 96vh;
+      scrollbar-width: thin;
+    }
+
+    .health-landing::-webkit-scrollbar {
+      width: 5px;
+      background: #E0D6C8;
+      border-radius: 10px;
+    }
+
+    .inner-wrap {
+      padding: 1.4rem 1.8rem 1.6rem 1.8rem;
+    }
+
+    /* hero header */
+    .hero {
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .main-headline {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1C5A5A, #2E8B57);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .main-headline span {
+      background: linear-gradient(135deg, #D2691E, #FF8C42);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subhead {
+      font-size: 0.85rem;
+      color: #2F6B47;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    /* grid for all products - all cards identical image size */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin: 1rem 0 1rem 0;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+      transition: all 0.25s ease;
+      border: 1px solid #F0E2D0;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.2);
+      border-color: #FFB347;
+    }
+
+    /* UNIFORM IMAGE CONTAINER - same exact height & width for every product image */
+    .image-uniform {
+      width: 100%;
+      height: 200px;
+      background: #FDF8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      border-bottom: 1px solid #f3e9dd;
+    }
+
+    .image-uniform img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      transition: transform 0.2s;
+    }
+
+    .card-body {
+      padding: 1rem 1rem 1.2rem 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #1C4E3F;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    .benefits {
+      font-size: 0.75rem;
+      color: #4A6F5E;
+      margin: 0.5rem 0;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .benefits strong {
+      color: #D45A1C;
+    }
+
+    .bullet-list {
+      list-style: none;
+      margin: 8px 0;
+    }
+
+    .bullet-list li {
+      font-size: 0.7rem;
+      padding: 3px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #2C5A48;
+      font-weight: 500;
+    }
+
+    .bullet-list li::before {
+      content: "✓";
+      color: #E67E22;
+      font-weight: bold;
+      font-size: 0.75rem;
+    }
+
+    .btn-sm {
+      background: linear-gradient(95deg, #E67E22, #F39C12);
+      text-align: center;
+      padding: 10px 0;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: white;
+      text-decoration: none;
+      margin-top: 12px;
+      transition: 0.2s;
+      display: block;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-sm:hover {
+      background: linear-gradient(95deg, #CE6A18, #E68A1F);
+      transform: scale(0.97);
+    }
+
+    .coupon {
+      font-size: 0.65rem;
+      background: #FFF1E0;
+      padding: 4px 8px;
+      border-radius: 30px;
+      text-align: center;
+      margin-top: 8px;
+      font-weight: 600;
+      color: #B45F2B;
+    }
+
+    /* newsletter block compact */
+    .news-wrapper {
+      background: #FEF5E8;
+      border-radius: 28px;
+      padding: 0.8rem 1.2rem;
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid #FFDEAD;
+    }
+
+    .news-text h4 {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #1A5A4A;
+    }
+
+    .news-text p {
+      font-size: 0.68rem;
+      color: #5E7B6E;
+    }
+
+    .news-form {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .news-form input {
+      padding: 8px 16px;
+      border-radius: 60px;
+      border: 1px solid #DCCAB0;
+      background: white;
+      min-width: 190px;
+      font-size: 0.75rem;
+    }
+
+    .news-form button {
+      background: #1C5A5A;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 60px;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.6rem;
+      color: #88A39B;
+      margin-top: 0.7rem;
+    }
+
+    @media (max-width: 780px) {
+      .inner-wrap {
+        padding: 1rem;
+      }
+      .main-headline {
+        font-size: 1.5rem;
+      }
+      .image-uniform {
+        height: 170px;
+      }
+    }
+
+    @media (max-height: 800px) {
+      .health-landing {
+        max-height: 98vh;
+      }
+      .inner-wrap {
+        padding: 0.8rem 1rem;
+      }
+      .products-grid {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="health-landing">
+  <div class="inner-wrap">
+    <div class="hero">
+      <h1 class="main-headline">🔥 PROVEN & TESTED: <span>Men's + Women's Health</span> 🔥<br>Clinically Proven Formulas That Actually Work</h1>
+      <div class="subhead">💊 Doctor-approved | Real results | Over 2 million satisfied customers worldwide 💊</div>
+    </div>
+
+    <!-- GRID: 10 products ALL with identical image size container -->
+    <div class="products-grid">
+
+      <!-- 1. VigRX Plus (men's health - penis enhancement) -->
+      <a href="https://www.vigrxplus.net/ct/958361" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://www.vigrxplus.net/wp-content/uploads/2025/02/hero-prods-1.png" alt="VigRX Plus"></div>
+        <div class="card-body">
+          <div class="product-title">💪 VigRX Plus | #1 Male Enhancement</div>
+          <div class="benefits"><strong>The Biggest Breakthrough</strong> – Clinically proven & doctor approved</div>
+          <ul class="bullet-list">
+            <li>Bigger, harder, longer lasting erections</li>
+            <li>Increased stamina & sex drive</li>
+            <li>More powerful, intense orgasms</li>
+          </ul>
+          <div class="btn-sm">👑 Get the Official Formula →</div>
+        </div>
+      </a>
+
+      <!-- 2. Provestra (women's health - libido & menopause) -->
+      <a href="https://www.provestra.com/ct/958361" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://www.provestra.com/wp-content/uploads/2021/04/prod-img2.png" alt="Provestra"></div>
+        <div class="card-body">
+          <div class="product-title">🌸 Provestra | Women's Libido & Vitality</div>
+          <div class="benefits"><strong>Reignite Your Passion Naturally</strong> – Female sexual enhancement</div>
+          <ul class="bullet-list">
+            <li>Boost your sex drive & desire</li>
+            <li>Increase vaginal lubrication</li>
+            <li>Heighten sensitivity & relieve menopause symptoms</li>
+          </ul>
+          <div class="btn-sm">💖 Unlock Your Confidence →</div>
+        </div>
+      </a>
+
+      <!-- 3. VolumePills (male reproductive health) -->
+      <a href="https://www.volumepills.com/ct/958361" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://www.volumepills.com/wp-content/uploads/2021/11/banner-package-sm.png" alt="VolumePills"></div>
+        <div class="card-body">
+          <div class="product-title">💦 VolumePills | 500% More Ejaculate</div>
+          <div class="benefits"><strong>Explosive Orgasms & Rock-Hard Erections</strong></div>
+          <ul class="bullet-list">
+            <li>Ejaculate up to 500% more cum</li>
+            <li>Bigger, thicker, longer erections</li>
+            <li>Impress partners & perform like a stud</li>
+          </ul>
+          <div class="btn-sm">⚡ Boost Performance Now →</div>
+        </div>
+      </a>
+
+      <!-- 4. Illuminatural6i (skin care - dark spots) -->
+      <a href="https://www.illuminatural6i.com/ct/958361" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://www.illuminatural6i.com/wp-content/uploads/2021/12/prod-img1.png" alt="Illuminatural6i"></div>
+        <div class="card-body">
+          <div class="product-title">✨ Illuminatural6i | Dark Spot Corrector</div>
+          <div class="benefits"><strong>Visibly Lighten Dark Spots on Face & Body</strong></div>
+          <ul class="bullet-list">
+            <li>Moles • Freckles • Birthmarks</li>
+            <li>Age spots • Acne scars • Melasma</li>
+            <li>Hyperpigmentation & more</li>
+          </ul>
+          <div class="btn-sm">🌟 Get Flawless Skin →</div>
+        </div>
+      </a>
+
+      <!-- 5. Total Curve (breast enhancement) -->
+      <a href="https://www.totalcurve.com/ct/958361" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://www.totalcurve.com/wp-content/themes/totalcurve/images/total-curve-hero-prods.png" alt="Total Curve"></div>
+        <div class="card-body">
+          <div class="product-title">🌸 Total Curve | Breast Enhancement Therapy</div>
+          <div class="benefits"><strong>Beautiful Breasts in Two Easy Steps</strong> – Natural & effective</div>
+          <ul class="bullet-list">
+            <li>Daily breast enhancement therapy</li>
+            <li>Lifts, firms & increases fullness</li>
+            <li>No surgery, natural ingredients</li>
+          </ul>
+          <div class="btn-sm">💃 Transform Your Silhouette →</div>
+        </div>
+      </a>
+
+      <!-- 6. Brain Pill (cognitive health) -->
+      <a href="https://www.brainpill.com/ct/958361" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://www.brainpill.com/wp-content/uploads/2022/02/brainpill-67days.png" alt="Brain Pill"></div>
+        <div class="card-body">
+          <div class="product-title">🧠 Brain Pill | Advanced Nootropic</div>
+          <div class="benefits"><strong>Eliminates Brain Fog & Boosts Memory</strong></div>
+          <ul class="bullet-list">
+            <li>Combats mental fatigue</li>
+            <li>Protects & bolsters memory</li>
+            <li>Sustains cognitive energy & learning</li>
+          </ul>
+          <div class="btn-sm">⚡ Unlock Peak Focus →</div>
+        </div>
+      </a>
+
+      <!-- 7. Dermefface FX7 (scar reduction) -->
+      <a href="https://www.dermeffacefx7.com/ct/958361" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://www.dermeffacefx7.com/wp-content/uploads/2022/05/single-dermefface-hero.png" alt="Dermefface FX7"></div>
+        <div class="card-body">
+          <div class="product-title">🩹 Dermefface FX7 | Scar Diminisher</div>
+          <div class="benefits"><strong>Visibly Reduce the Look of Scars</strong></div>
+          <ul class="bullet-list">
+            <li>Acne scars • Chicken pox scars</li>
+            <li>Injury scars • Burn scars</li>
+            <li>Smoother, more even skin tone</li>
+          </ul>
+          <div class="btn-sm">✨ Restore Your Skin →</div>
+        </div>
+      </a>
+
+      <!-- 8. Serene Tree (Delta-9 THC flower - wellness) -->
+      <a href="https://serenetree.com/?ref=pprbfjhy" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://cdn11.bigcommerce.com/s-zoe0fq8cqz/images/stencil/original/image-manager/serene-tree-delta-9-thc-flower2.png" alt="Serene Tree Delta-9"></div>
+        <div class="card-body">
+          <div class="product-title">🌿 Serene Tree | Premium Delta-9 THC Flower</div>
+          <div class="benefits"><strong>Best Reviews Online – Top Strains</strong></div>
+          <ul class="bullet-list">
+            <li>Super Lemon Haze • Green Crack & more</li>
+            <li>Lab-tested & potent</li>
+            <li>🔥 Coupon: <strong>MRCNEU</strong> for 20% OFF</li>
+          </ul>
+          <div class="coupon">🎁 Use code MRCNEU → 20% off entire order</div>
+          <div class="btn-sm">🌱 Shop Now & Save →</div>
+        </div>
+      </a>
+
+      <!-- 9. Swap & Burn (weight loss habits) -->
+      <a href="https://swapandburn.com/3-simple-habit-swaps-that-trigger-weight-loss/?ol=YygPXr" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://swapandburn.com/wp-content/uploads/2026/02/ChatGPT-Image-Feb-2-2026-10_25_14-AM-768x768.png" alt="Swap and Burn"></div>
+        <div class="card-body">
+          <div class="product-title">🔥 Swap & Burn | Weight Loss Made Easy</div>
+          <div class="benefits"><strong>3 Simple Habit Swaps for Easier Weight Loss</strong></div>
+          <ul class="bullet-list">
+            <li>Small daily changes without dieting</li>
+            <li>No tracking, no willpower required</li>
+            <li>Sustainable fat loss triggers</li>
+          </ul>
+          <div class="btn-sm">⚡ Start Your Transformation →</div>
+        </div>
+      </a>
+
+      <!-- 10. LiveGood Pet Multivitamin + Holistic Bundle (pet health) -->
+      <a href="https://shop.offerlab.com/holistic-pet-wellness-natural-lifestyle-transformation-bundle-eaf890bd" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="image-uniform"><img src="https://app.offerlab.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNU1IQXc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--9a880b1066ef17bd8aa90084d6a1bd5a590d5031/image.png" alt="LiveGood Pet Multivitamin"></div>
+        <div class="card-body">
+          <div class="product-title">🐾 LiveGood Pet Multivitamin</div>
+          <div class="benefits"><strong>Holistic Pet Wellness + Lifestyle Bundle</strong></div>
+          <ul class="bullet-list">
+            <li>Daily multivitamin for energy & immunity</li>
+            <li>Supports coat health & vitality</li>
+            <li>Clean, science-based nutrition</li>
+          </ul>
+          <div class="btn-sm">🐶 Give Your Pet the Best →</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Newsletter section: updates about health & traffic offers -->
+    <div class="news-wrapper">
+      <div class="news-text">
+        <h4>📬 Want updates on proven health solutions & exclusive deals?</h4>
+        <p>Get notified about new men's/women's health breakthroughs, coupons & science-backed products.</p>
+      </div>
+      <form method="post" action="https://www.sendsteed.com/subscribe/" class="news-form">
+        <input type="text" name="e123432" required placeholder="your@email.com">
+        <input type="hidden" name="lllid" value="123432">
+        <input type="hidden" name="lluid" value="sandyarta">
+        <input type="hidden" name="redirect" value="">
+        <input type="hidden" name="source" value="healthpage2026">
+        <button type="submit">Subscribe & Save →</button>
+      </form>
+    </div>
+    <div class="footer-note">
+      ✅ Clinically tested • Real customer results • All links open secure pages • 90-day money-back on most products
+    </div>
+  </div>
+</div>
+</body>
+</html>
