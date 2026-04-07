@@ -106,6 +106,27 @@
       background: #fffdf9;
     }
 
+    /* special styling for card with image preview */
+    .offer-card.with-image {
+      position: relative;
+    }
+    
+    .card-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      object-position: center;
+      border-top-left-radius: 28px;
+      border-top-right-radius: 28px;
+      transition: transform 0.2s ease;
+      background: #f2f6f8;
+      display: block;
+    }
+    
+    .offer-card:hover .card-image {
+      transform: scale(1.01);
+    }
+    
     .card-content {
       padding: 1.6rem 1.3rem 1.6rem 1.3rem;
       text-align: center;
@@ -143,6 +164,19 @@
       border-top: 1px dashed #ffb34760;
       padding-top: 0.5rem;
       width: 100%;
+    }
+    
+    .price-badge {
+      display: inline-block;
+      background: linear-gradient(95deg, #E68A2E, #FFB247);
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: white;
+      margin-top: 8px;
+      letter-spacing: 0.3px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     /* email section — newsletter block */
@@ -245,6 +279,9 @@
       .newsletter-section {
         padding: 1.2rem;
       }
+      .card-image {
+        height: 130px;
+      }
     }
 
     /* make sure content fits in viewport without overflow scroll on typical laptop/desktop */
@@ -267,6 +304,9 @@
         margin-top: 0.4rem;
         padding: 1rem;
       }
+      .card-image {
+        height: 120px;
+      }
     }
   </style>
 </head>
@@ -280,7 +320,7 @@
       <div class="subhead">🔥 vetted, high-intent sources — click any offer to unlock real buyer traffic now 🔥</div>
     </div>
 
-    <!-- clickable titles grid: 7 links total (6 warriorplus + 1 trafficzest) -->
+    <!-- clickable titles grid: total 8 offers (7 original + 1 new image offer) -->
     <div class="offers-grid">
       <!-- Link 1: Warriorplus /twice appended to the 0 (directly at the end of the numeric zero) -->
       <a href="https://warriorplus.com/o2/a/yxf1kwg/0/twice" target="_blank" rel="noopener noreferrer" class="offer-card">
@@ -349,6 +389,18 @@
           <div class="card-title">TrafficZest Premium Flow</div>
           <div class="card-desc">Real buyer traffic from top-tier networks — get the edge now.</div>
           <div class="click-hint">👉 Start Buyer Campaign 👈</div>
+        </div>
+      </a>
+
+      <!-- NEW CARD: Image + "Tested Buyer Traffic: Get Quality Clicks for Only $1" with warriorplus affiliate link from dailyproductreview -->
+      <a href="https://dailyproductreview.github.io/dawudoffers/" target="_blank" rel="noopener noreferrer" class="offer-card with-image">
+        <img class="card-image" src="https://warriorplus.com/assets/user/listing_image/o-90001-prod_image.jpg?v=1771073436" alt="Tested Buyer Traffic Dashboard" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x150?text=Buyer+Traffic+Preview';">
+        <div class="card-content">
+          <div class="card-icon">✅</div>
+          <div class="card-title">🔥 Tested Buyer Traffic</div>
+          <div class="card-desc">Get quality clicks for only $1 — verified high-intent buyers ready to convert. Limited offer.</div>
+          <div class="price-badge">⭐ ONLY $1 PER CLICK ⭐</div>
+          <div class="click-hint">👉 Grab Your Tested Traffic Now 👈</div>
         </div>
       </a>
     </div>
