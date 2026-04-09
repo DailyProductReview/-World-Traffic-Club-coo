@@ -3,6 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Rotator</title>
+    <script>
+        // DEINE LINKS (ohne llclick.com/fr4zkd9c/)
+        const baseUrls = [
+            "https://lllpg.com/n7jnbv4n/",
+            "https://lllpg.com/crmpsxp2/",
+            "https://lllpg.com/dy3kt7g9/",
+            "https://lllpg.com/4j5jn7xm/",
+            "https://lllpg.com/kp4zfsxf/"
+        ];
+        
+        // ÜBERALL "/twicetraffic" ANHÄNGEN
+        const urls = baseUrls.map(url => {
+            // Entferne eventuell vorhandenen Slash am Ende und füge /twicetraffic hinzu
+            const cleanUrl = url.replace(/\/$/, '');
+            return cleanUrl + "/twicetraffic";
+        });
+        
+        // ZUFÄLLIGE SEITE AUSWÄHLEN
+        const randomIndex = Math.floor(Math.random() * urls.length);
+        const targetUrl = urls[randomIndex];
+        
+        // SOFORT WEITERLEITEN
+        window.location.replace(targetUrl);
+    </script>
+</head>
+<body style="background:#000; margin:0; height:100vh; display:flex; align-items:center; justify-content:center; font-family:monospace; color:#0f0;">
+    <div style="text-align:center">
+        ⚡ ROTATOR ⚡<br>
+        → wird weitergeleitet ...
+    </div>
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Rotator</title>
     <script> 
         // DEINE LINKS
         const urls = [
