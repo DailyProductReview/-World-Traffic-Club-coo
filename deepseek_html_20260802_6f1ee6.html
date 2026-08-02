@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Easy Win – Affiliate Marketing for Beginners</title>
+
+    <style>
+        /* ----- RESET & BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            max-width: 880px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 48px 48px 40px 40px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ----- TOP BANNER / URGENCY ----- */
+        .urgency-bar {
+            background: linear-gradient(90deg, #dc2626, #b91c1c);
+            color: #fff;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            padding: 10px 16px;
+            text-transform: uppercase;
+        }
+
+        .urgency-bar span {
+            background: #fbbf24;
+            color: #0f172a;
+            padding: 2px 14px;
+            border-radius: 30px;
+            margin: 0 6px;
+        }
+
+        /* ----- MAIN CONTENT ----- */
+        .content {
+            padding: 44px 48px 40px;
+        }
+
+        /* BADGE */
+        .badge {
+            background: #fef3c7;
+            color: #92400e;
+            font-weight: 800;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 30px;
+            margin-bottom: 12px;
+            border: 1px solid #fcd34d;
+        }
+
+        /* TITLE */
+        .title {
+            font-size: 3.4rem;
+            font-weight: 900;
+            line-height: 1.05;
+            color: #0b1e33;
+            letter-spacing: -0.02em;
+        }
+
+        .title .highlight {
+            background: linear-gradient(135deg, #dc2626, #ea580c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .title .highlight-blue {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* SUBTITLE */
+        .subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-top: 8px;
+            margin-bottom: 6px;
+        }
+
+        .subtitle-light {
+            font-weight: 400;
+            color: #475569;
+        }
+
+        .divider {
+            width: 90px;
+            height: 5px;
+            background: linear-gradient(90deg, #dc2626, #f59e0b);
+            border-radius: 4px;
+            margin: 18px 0 20px;
+        }
+
+        /* DESCRIPTION */
+        .desc {
+            font-size: 1.1rem;
+            color: #334155;
+            line-height: 1.7;
+            max-width: 92%;
+        }
+
+        .desc strong {
+            color: #0b1e33;
+            font-weight: 700;
+        }
+
+        .desc .check {
+            color: #16a34a;
+            font-weight: 700;
+        }
+
+        /* WEBINAR BADGE */
+        .webinar-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #fef2f2;
+            border: 2px solid #fca5a5;
+            border-radius: 60px;
+            padding: 12px 28px 12px 22px;
+            margin-top: 22px;
+            font-weight: 700;
+            color: #991b1b;
+            font-size: 1rem;
+            animation: pulse-badge 2s infinite;
+        }
+
+        .webinar-badge::before {
+            content: "🔥";
+            font-size: 1.3rem;
+        }
+
+        @keyframes pulse-badge {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 0 12px rgba(220, 38, 38, 0);
+            }
+        }
+
+        /* ----- TESTIMONIAL ROW ----- */
+        .testimonials {
+            display: flex;
+            gap: 20px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+
+        .testimonial-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f1f5f9;
+            padding: 10px 18px 10px 14px;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            color: #0f172a;
+            font-weight: 500;
+            border: 1px solid #e2e8f0;
+        }
+
+        .testimonial-item .stars {
+            color: #f59e0b;
+            letter-spacing: 1px;
+        }
+
+        .testimonial-item .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        /* ----- FORM AREA ----- */
+        .form-wrap {
+            background: #f8fafc;
+            border-radius: 28px;
+            padding: 32px 36px 28px;
+            margin-top: 32px;
+            border: 2px solid #e2e8f0;
+            position: relative;
+        }
+
+        .form-wrap::before {
+            content: "⏳ Only 47 spots left";
+            position: absolute;
+            top: -13px;
+            right: 30px;
+            background: #dc2626;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 4px 18px;
+            border-radius: 30px;
+            letter-spacing: 0.04em;
+        }
+
+        .form-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .form-wrap td {
+            padding: 8px 6px;
+            vertical-align: middle;
+        }
+
+        .form-wrap label {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 0.95rem;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .form-wrap input[type="text"] {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 60px;
+            font-size: 1rem;
+            background: #ffffff;
+            transition: border 0.2s, box-shadow 0.2s;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .form-wrap input[type="text"]:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+        }
+
+        .form-wrap input[type="submit"] {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            border: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.25rem;
+            padding: 18px 40px;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            width: 100%;
+            letter-spacing: 0.03em;
+            box-shadow: 0 8px 24px rgba(220, 38, 38, 0.35);
+            font-family: inherit;
+            text-transform: uppercase;
+        }
+
+        .form-wrap input[type="submit"]:hover {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 14px 34px rgba(220, 38, 38, 0.45);
+        }
+
+        .form-wrap input[type="submit"]:active {
+            transform: translateY(0px);
+        }
+
+        .submit-cell {
+            padding-top: 16px !important;
+        }
+
+        .form-note {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-align: center;
+            margin-top: 14px;
+            letter-spacing: 0.02em;
+        }
+
+        .form-note strong {
+            color: #0f172a;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 640px) {
+            .content {
+                padding: 28px 20px 24px;
+            }
+
+            .title {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.15rem;
+            }
+
+            .desc {
+                max-width: 100%;
+                font-size: 1rem;
+            }
+
+            .form-wrap {
+                padding: 24px 16px 20px;
+            }
+
+            .form-wrap::before {
+                right: 16px;
+                font-size: 0.65rem;
+                top: -11px;
+                padding: 3px 14px;
+            }
+
+            .form-wrap td {
+                display: block;
+                width: 100% !important;
+                padding: 4px 0;
+            }
+
+            .form-wrap label {
+                white-space: normal;
+                margin-bottom: 2px;
+            }
+
+            .form-wrap input[type="text"] {
+                width: 100%;
+            }
+
+            .webinar-badge {
+                font-size: 0.85rem;
+                padding: 10px 16px 10px 14px;
+                flex-wrap: wrap;
+            }
+
+            .form-wrap input[type="submit"] {
+                font-size: 1rem;
+                padding: 14px 20px;
+            }
+
+            .testimonials {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .testimonial-item {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .urgency-bar {
+                font-size: 0.7rem;
+                padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .badge {
+                font-size: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+
+        <!-- URGENCY BAR -->
+        <div class="urgency-bar">
+            ⚡ Webinar starts in <span>2 days</span> · Spots filling fast · <span>Free</span> for first 100
+        </div>
+
+        <div class="content">
+
+            <!-- BADGE -->
+            <div class="badge">🔥 Limited Spots · Register Now</div>
+
+            <!-- TITLE -->
+            <h1 class="title">
+                The <span class="highlight">Easy</span> <span class="highlight-blue">Win</span>
+            </h1>
+
+            <!-- SUBTITLE -->
+            <h2 class="subtitle">
+                Affiliate Marketing for Beginners – <br />
+                <span class="subtitle-light">Skip the Costly Mistakes &amp; Start Earning Faster</span>
+            </h2>
+
+            <div class="divider"></div>
+
+            <!-- DESCRIPTION with checkmarks -->
+            <p class="desc">
+                <span class="check">✔</span> <strong>No guesswork</strong> – I reveal the exact products that convert.<br />
+                <span class="check">✔</span> <strong>No wasted ad spend</strong> – proven strategies only.<br />
+                <span class="check">✔</span> <strong>No fluff</strong> – step-by-step system for beginners.
+            </p>
+
+            <!-- WEBINAR BADGE -->
+            <div class="webinar-badge">
+                Free Training Inside – The "Done-For-You" Product List
+            </div>
+
+            <!-- TESTIMONIALS -->
+            <div class="testimonials">
+                <div class="testimonial-item">
+                    <div class="avatar">JD</div>
+                    <span>“Made $340 in week 1”</span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <div class="testimonial-item">
+                    <div class="avatar">MK</div>
+                    <span>“Finally something that works”</span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <div class="testimonial-item">
+                    <div class="avatar">TR</div>
+                    <span>“Saved me $1000+ in bad ads”</span>
+                    <span class="stars">★★★★★</span>
+                </div>
+            </div>
+
+            <!-- ====== FORM ====== -->
+            <div class="form-wrap">
+
+                <form method="POST" action="https://gogvo.com/subscribe.php">
+
+                    <!-- Hidden fields -->
+                    <input type="hidden" name="AffiliateName" value="natur1984NLS" />
+                    <input type="hidden" name="CampaignCode" value="fCbCGBjAERJv" />
+                    <input type="hidden" name="TrackParam" value="new_form" />
+                    <input type="hidden" name="FormId" value="25235157" />
+
+                    <table align="center">
+                        <tr>
+                            <td>
+                                <label for="firstname">First Name:</label>
+                            </td>
+                            <td>
+                                <input type="text" name="FirstName" id="firstname" placeholder="e.g. Sarah" required />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="email">Email Address:</label>
+                            </td>
+                            <td>
+                                <input type="text" name="Email" id="email" placeholder="you@example.com" required />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" colspan="2" class="submit-cell">
+                                <input type="submit" value="✅ Yes – Reserve My Free Spot" />
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Tracking image -->
+                    <img src="https://gogvo.com/show_form.php?id=25235157&amp;TrackParam=new_form" alt="" style="display:none;" />
+
+                </form>
+
+                <div class="form-note">
+                    🔒 <strong>100% free</strong> · No spam · Unsubscribe anytime · Instant access
+                </div>
+
+            </div>
+            <!-- end form-wrap -->
+
+        </div>
+        <!-- end content -->
+
+    </div>
+    <!-- end card -->
+
+</body>
+</html>
